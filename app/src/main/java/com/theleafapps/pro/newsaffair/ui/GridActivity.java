@@ -1,18 +1,19 @@
 package com.theleafapps.pro.newsaffair.ui;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.view.MenuItem;
 
 import com.theleafapps.pro.newsaffair.R;
 import com.theleafapps.pro.newsaffair.adapters.SourcesGridViewRecyclerAdapter;
 import com.theleafapps.pro.newsaffair.models.Source;
 import com.theleafapps.pro.newsaffair.tasks.ApiEPInterface;
+import com.theleafapps.pro.newsaffair.ui.base.BaseActivity;
 
 import java.io.IOException;
 import java.util.List;
@@ -28,34 +29,36 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class GridActivity extends AppCompatActivity {
+public class GridActivity extends BaseActivity {
 
     public static final String BASE_URL = "https://newsapi.org/";
 
     @BindView(R.id.sources_recycler_view)
     RecyclerView sourcesRecyclerView;
 
-    @BindView(R.id.no_network_label_1)
-    TextView no_network_label_1;
-
-    @BindView(R.id.no_network_label_2)
-    TextView no_network_label_2;
-
-    @BindView(R.id.refresh_icon)
-    ImageView refresh_icon;
-
-    @BindView(R.id.no_network_image_icon)
-    ImageView no_network_image_icon;
-
-
     StaggeredGridLayoutManager staggeredGridLayoutManager;
     SourcesGridViewRecyclerAdapter sourcesGridViewRecyclerAdapter;
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grid);
         ButterKnife.bind(this);
+
+        setupToolbar();
+
+        pDialog = new ProgressDialog(this);
+        pDialog.setMessage("      The fresh news is cooking .....");
+        pDialog.setCancelable(false);
+
+        showpDialog();
+
+//################################################
+//
+//      Implementing OKHttpClient
+//
+//################################################
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
@@ -70,6 +73,14 @@ public class GridActivity extends AppCompatActivity {
                     }
                 }).build();
 
+
+//################################################
+//
+//      Implementing Retrofit
+//
+//################################################
+
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(okHttpClient)
@@ -82,32 +93,65 @@ public class GridActivity extends AppCompatActivity {
         call.enqueue(new Callback<Source>() {
             @Override
             public void onResponse(Call<Source> call, retrofit2.Response<Source> response) {
-//                Log.d("Tangho", " response"+response.body().getSources().get(0));
+//              Log.d("Tangho", " response"+response.body().getSources().get(0));
 
                 List<Source.SourcesBean> sourceList = response.body().getSources();
-
                 if(response.body().getSources().size()>0){
                     sourcesGridViewRecyclerAdapter = new SourcesGridViewRecyclerAdapter(GridActivity.this,
                             sourceList);
                     sourcesRecyclerView.setAdapter(sourcesGridViewRecyclerAdapter);
-
                 }
+                hidepDialog();
             }
 
             @Override
             public void onFailure(Call<Source> call, Throwable t) {
-
-                sourcesRecyclerView.setVisibility(View.INVISIBLE);
-                no_network_image_icon.setVisibility(View.VISIBLE);
-                refresh_icon.setVisibility(View.VISIBLE);
-                no_network_label_1.setVisibility(View.VISIBLE);
-                no_network_label_2.setVisibility(View.VISIBLE);
-//              text.setText(t.getMessage());
-
+                hidepDialog();
+                Intent intent1 = new Intent(GridActivity.this,NoNetworkActivity.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent1);
             }
         });
 
+
+//################################################
+//
+//      Implementing RecyclerView with StaggeredGridView
+//
+//################################################
+
+
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
         sourcesRecyclerView.setLayoutManager(staggeredGridLayoutManager);
+    }
+
+    private void setupToolbar() {
+        final ActionBar ab = getActionBarToolbar();
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+        ab.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                openDrawer();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showpDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+    private void hidepDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
+    @Override
+    public boolean providesActivityToolbar() {
+        return true;
     }
 }

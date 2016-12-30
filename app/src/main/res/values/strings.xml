@@ -2,4 +2,13 @@
     <string name="app_name">News Affair</string>
     <string name="apkky">c3948fe6b57d4c3098551547d7574c65</string>
     <string name="action_settings">Settings</string>
+
+
+    <string name="navigation_title">My navigation title</string>
+    <string name="navigation_quotes">Quotes</string>
+    <string name="navigation_samples">Samples</string>
+    <string name="navigation_settings">Settings</string>
+    <string name="navigation_sub_items">Sub items</string>
+    <string name="navigation_dummy_item_1">Dummy item 1</string>
+    <string name="navigation_dummy_item_2">Dummy item 2</string>
 </resources>

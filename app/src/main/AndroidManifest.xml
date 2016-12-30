@@ -18,7 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.NewsCardsActivity" />
-        <activity android:name=".ui.WebActivity"></activity>
+        <activity android:name=".ui.WebActivity" />
+        <activity android:name=".ui.NoNetworkActivity"></activity>
     </application>
 
 </manifest>
