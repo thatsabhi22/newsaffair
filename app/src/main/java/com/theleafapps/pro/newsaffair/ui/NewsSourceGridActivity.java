@@ -3,17 +3,17 @@ package com.theleafapps.pro.newsaffair.ui;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MenuItem;
 
 import com.theleafapps.pro.newsaffair.R;
-import com.theleafapps.pro.newsaffair.adapters.SourcesGridViewRecyclerAdapter;
+import com.theleafapps.pro.newsaffair.adapters.NewsSourcesGridViewRecyclerAdapter;
 import com.theleafapps.pro.newsaffair.models.Source;
 import com.theleafapps.pro.newsaffair.tasks.ApiEPInterface;
 import com.theleafapps.pro.newsaffair.ui.base.BaseActivity;
+import com.theleafapps.pro.newsaffair.utils.Commons;
 
 import java.io.IOException;
 import java.util.List;
@@ -29,21 +29,20 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class GridActivity extends BaseActivity {
-
-    public static final String BASE_URL = "https://newsapi.org/";
+public class NewsSourceGridActivity extends BaseActivity {
 
     @BindView(R.id.sources_recycler_view)
     RecyclerView sourcesRecyclerView;
 
     StaggeredGridLayoutManager staggeredGridLayoutManager;
-    SourcesGridViewRecyclerAdapter sourcesGridViewRecyclerAdapter;
+    NewsSourcesGridViewRecyclerAdapter sourcesGridViewRecyclerAdapter;
     private ProgressDialog pDialog;
+    OkHttpClient okHttpClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_grid);
+        setContentView(R.layout.activity_news_source_grid);
         ButterKnife.bind(this);
 
         setupToolbar();
@@ -52,7 +51,7 @@ public class GridActivity extends BaseActivity {
         pDialog.setMessage("      The fresh news is cooking .....");
         pDialog.setCancelable(false);
 
-        showpDialog();
+        Commons.showpDialog(pDialog);
 
 //################################################
 //
@@ -60,7 +59,7 @@ public class GridActivity extends BaseActivity {
 //
 //################################################
 
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+        okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
@@ -80,14 +79,19 @@ public class GridActivity extends BaseActivity {
 //
 //################################################
 
+//###### Building Retrofit Object ################
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(Commons.BASE_URL)
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+//################################################
+
         ApiEPInterface service = retrofit.create(ApiEPInterface.class);
+
+//############### Calling Service ################
 
         Call<Source> call = service.getNewsSources(getResources().getString(R.string.apkky));
         call.enqueue(new Callback<Source>() {
@@ -97,21 +101,23 @@ public class GridActivity extends BaseActivity {
 
                 List<Source.SourcesBean> sourceList = response.body().getSources();
                 if(response.body().getSources().size()>0){
-                    sourcesGridViewRecyclerAdapter = new SourcesGridViewRecyclerAdapter(GridActivity.this,
+                    sourcesGridViewRecyclerAdapter = new NewsSourcesGridViewRecyclerAdapter(NewsSourceGridActivity.this,
                             sourceList);
                     sourcesRecyclerView.setAdapter(sourcesGridViewRecyclerAdapter);
                 }
-                hidepDialog();
+                Commons.hidepDialog(pDialog);
             }
 
             @Override
             public void onFailure(Call<Source> call, Throwable t) {
-                hidepDialog();
-                Intent intent1 = new Intent(GridActivity.this,NoNetworkActivity.class);
+                Commons.hidepDialog(pDialog);
+                Intent intent1 = new Intent(NewsSourceGridActivity.this,NoNetworkActivity.class);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent1);
             }
         });
+
+//#################################################
 
 
 //################################################
@@ -141,14 +147,7 @@ public class GridActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void showpDialog() {
-        if (!pDialog.isShowing())
-            pDialog.show();
-    }
-    private void hidepDialog() {
-        if (pDialog.isShowing())
-            pDialog.dismiss();
-    }
+
 
     @Override
     public boolean providesActivityToolbar() {

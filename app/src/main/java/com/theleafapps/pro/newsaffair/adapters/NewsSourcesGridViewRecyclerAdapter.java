@@ -12,7 +12,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.theleafapps.pro.newsaffair.R;
 import com.theleafapps.pro.newsaffair.models.Source;
-import com.theleafapps.pro.newsaffair.ui.NewsCardsActivity;
+import com.theleafapps.pro.newsaffair.ui.NewsListCardsActivity;
 import com.theleafapps.pro.newsaffair.utils.MySingleton;
 
 import java.util.List;
@@ -23,14 +23,14 @@ import butterknife.ButterKnife;
 /**
  * Created by aviator on 26/04/16.
  */
-public class SourcesGridViewRecyclerAdapter extends
-        RecyclerView.Adapter<SourcesGridViewRecyclerAdapter.SourcesGridViewHolder>{
+public class NewsSourcesGridViewRecyclerAdapter extends
+        RecyclerView.Adapter<NewsSourcesGridViewRecyclerAdapter.SourcesGridViewHolder>{
 
     Context mContext;
     List<Source.SourcesBean> sourceList;
     private ImageLoader mImageLoader;
 
-    public SourcesGridViewRecyclerAdapter(Context context, List<Source.SourcesBean> sourceList) {
+    public NewsSourcesGridViewRecyclerAdapter(Context context, List<Source.SourcesBean> sourceList) {
         this.sourceList        =   sourceList;
         this.mContext          =   context;
     }
@@ -42,14 +42,15 @@ public class SourcesGridViewRecyclerAdapter extends
             @Override
             public void onClick(View v) {
 
-//              TextView name       =   (TextView) v.findViewById(R.id.product_name);
-                TextView sourceIdTv  =   (TextView) v.findViewById(R.id.source_id_tv);
+                TextView sourceNameTv   =   (TextView) v.findViewById(R.id.source_name_tv);
+                TextView sourceIdTv     =   (TextView) v.findViewById(R.id.source_id_tv);
 
 //                Toast.makeText(mContext,"Card Clicked -> Product Name : " + name.getText() + " | Product Id ->"
 //                        + productId.getText() , Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(mContext, NewsCardsActivity.class);
+                Intent intent = new Intent(mContext, NewsListCardsActivity.class);
                 intent.putExtra("sourceId",sourceIdTv.getText());
+                intent.putExtra("sourceName",sourceNameTv.getText());
                 mContext.startActivity(intent);
 
             }
@@ -64,7 +65,8 @@ public class SourcesGridViewRecyclerAdapter extends
 
         mImageLoader = MySingleton.getInstance(mContext).getImageLoader();
         holder.sourceImage.setImageUrl(sourceList.get(position).getUrlsToLogos().getSmall(),mImageLoader);
-        holder.sourceId.setText(String.valueOf(sourceList.get(position).getId()));
+        holder.sourceIdTv.setText(String.valueOf(sourceList.get(position).getId()));
+        holder.sourceNameTv.setText(String.valueOf(sourceList.get(position).getName()));
 
     }
 
@@ -75,11 +77,14 @@ public class SourcesGridViewRecyclerAdapter extends
 
     public class SourcesGridViewHolder extends RecyclerView.ViewHolder{
 
-        @BindView(R.id.source_image)
+        @BindView(R.id.source_image_view)
         public NetworkImageView sourceImage;
 
         @BindView(R.id.source_id_tv)
-        public TextView sourceId;
+        public TextView sourceIdTv;
+
+        @BindView(R.id.source_name_tv)
+        public TextView sourceNameTv;
 
         public SourcesGridViewHolder(View itemView) {
             super(itemView);
