@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">News Affair</string>
     <string name="apkky">c3948fe6b57d4c3098551547d7574c65</string>
+    <string name="sortBy">latest</string>
     <string name="action_settings">Settings</string>
 
 

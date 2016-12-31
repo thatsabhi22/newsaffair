@@ -28,7 +28,7 @@ public class NoNetworkActivity extends AppCompatActivity {
         refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(NoNetworkActivity.this,GridActivity.class);
+                intent = new Intent(NoNetworkActivity.this,NewsSourceGridActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
