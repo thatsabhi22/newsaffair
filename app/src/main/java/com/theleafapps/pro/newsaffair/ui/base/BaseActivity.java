@@ -1,5 +1,6 @@
 package com.theleafapps.pro.newsaffair.ui.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -10,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.theleafapps.pro.newsaffair.R;
+import com.theleafapps.pro.newsaffair.ui.AboutActivity;
+import com.theleafapps.pro.newsaffair.ui.CreditsActivity;
 
 import static com.theleafapps.pro.newsaffair.utils.LogUtil.logD;
 import static com.theleafapps.pro.newsaffair.utils.LogUtil.makeLogTag;
@@ -100,13 +103,12 @@ public abstract class BaseActivity extends AppCompatActivity {
      */
     private void goToNavDrawerItem(int item) {
         switch (item) {
-//            case R.id.nav_quotes:
-//                startActivity(new Intent(this, ListActivity.class));
-//                finish();
-//                break;
-//            case R.id.nav_samples:
-//                startActivity(new Intent(this, ViewSamplesActivity.class));
-//                break;
+            case R.id.nav_about:
+                startActivity(new Intent(this, AboutActivity.class));
+                break;
+            case R.id.nav_credits:
+                startActivity(new Intent(this, CreditsActivity.class));
+                break;
 //            case R.id.nav_settings:
 //                startActivity(new Intent(this, SettingsActivity.class));
 //                break;

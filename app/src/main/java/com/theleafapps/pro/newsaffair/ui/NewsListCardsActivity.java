@@ -2,18 +2,18 @@ package com.theleafapps.pro.newsaffair.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.TextUtils;
-import android.util.Log;
+import android.view.MenuItem;
 
 import com.theleafapps.pro.newsaffair.R;
 import com.theleafapps.pro.newsaffair.adapters.NewsListViewRecyclerAdapter;
 import com.theleafapps.pro.newsaffair.models.Article;
 import com.theleafapps.pro.newsaffair.tasks.ApiEPInterface;
+import com.theleafapps.pro.newsaffair.ui.base.BaseActivity;
 import com.theleafapps.pro.newsaffair.utils.Commons;
 
 import java.io.IOException;
@@ -30,7 +30,7 @@ import retrofit2.Callback;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class NewsListCardsActivity extends AppCompatActivity {
+public class NewsListCardsActivity extends BaseActivity {
 
     @BindView(R.id.news_list_recycler_view)
     RecyclerView newsListRecyclerView;
@@ -48,6 +48,8 @@ public class NewsListCardsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_news_list_cards);
         ButterKnife.bind(this);
 
+        setupToolbar();
+
         receiveI    =   getIntent();
         sourceId    =   receiveI.getStringExtra("sourceId");
         sourceName  =   receiveI.getStringExtra("sourceName");
@@ -56,7 +58,7 @@ public class NewsListCardsActivity extends AppCompatActivity {
             NewsListCardsActivity.this.setTitle("News Affair - " + sourceName);
 
         pDialog     = new ProgressDialog(this);
-        pDialog.setMessage("      The fresh news is cooking .....");
+        pDialog.setMessage("  The fresh news is cooking ...");
         pDialog.setCancelable(false);
 
         linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
@@ -131,12 +133,33 @@ public class NewsListCardsActivity extends AppCompatActivity {
         }
 
 //#################################################
-        //################################################
 //
 //      Implementing RecyclerView
 //
 //################################################
 
         newsListRecyclerView.setLayoutManager(linearLayoutManager);
+    }
+
+
+    private void setupToolbar() {
+        final ActionBar ab = getActionBarToolbar();
+        ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+        ab.setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                openDrawer();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean providesActivityToolbar() {
+        return true;
     }
 }

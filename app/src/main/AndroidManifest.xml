@@ -19,7 +19,10 @@
         </activity>
         <activity android:name=".ui.NewsListCardsActivity" />
         <activity android:name=".ui.WebActivity" />
-        <activity android:name=".ui.NoNetworkActivity"></activity>
+        <activity android:name=".ui.NoNetworkActivity" />
+        <activity android:name=".ui.AboutActivity" />
+        <activity android:name=".ui.CreditsActivity" />
+        <activity android:name=".ui.SplashActivity"></activity>
     </application>
 
 </manifest>

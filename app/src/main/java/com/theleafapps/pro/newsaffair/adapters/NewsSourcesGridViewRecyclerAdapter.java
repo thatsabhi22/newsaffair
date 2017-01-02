@@ -3,17 +3,17 @@ package com.theleafapps.pro.newsaffair.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
+import com.squareup.picasso.Picasso;
 import com.theleafapps.pro.newsaffair.R;
 import com.theleafapps.pro.newsaffair.models.Source;
 import com.theleafapps.pro.newsaffair.ui.NewsListCardsActivity;
-import com.theleafapps.pro.newsaffair.utils.MySingleton;
 
 import java.util.List;
 
@@ -28,7 +28,6 @@ public class NewsSourcesGridViewRecyclerAdapter extends
 
     Context mContext;
     List<Source.SourcesBean> sourceList;
-    private ImageLoader mImageLoader;
 
     public NewsSourcesGridViewRecyclerAdapter(Context context, List<Source.SourcesBean> sourceList) {
         this.sourceList        =   sourceList;
@@ -63,8 +62,22 @@ public class NewsSourcesGridViewRecyclerAdapter extends
     @Override
     public void onBindViewHolder(SourcesGridViewHolder holder, int position) {
 
-        mImageLoader = MySingleton.getInstance(mContext).getImageLoader();
-        holder.sourceImage.setImageUrl(sourceList.get(position).getUrlsToLogos().getSmall(),mImageLoader);
+//        mImageLoader = MySingleton.getInstance(mContext).getImageLoader();
+//        holder.sourceImage.setImageUrl(sourceList.get(position).getUrlsToLogos().getSmall(),mImageLoader);
+
+        String url = sourceList.get(position).getUrlsToLogos().getSmall();
+        if (!TextUtils.isEmpty(url)) {
+            Picasso
+                    .with(mContext)
+                    .load(sourceList.get(position).getUrlsToLogos().getSmall())
+                    .into(holder.sourceImage);
+        } else {
+            // make sure Glide doesn't load anything into this view until told otherwise
+//            Glide.clear(holder.newsArticleImage);
+            // remove the placeholder (optional); read comments below
+            holder.sourceImage.setImageDrawable(null);
+        }
+
         holder.sourceIdTv.setText(String.valueOf(sourceList.get(position).getId()));
         holder.sourceNameTv.setText(String.valueOf(sourceList.get(position).getName()));
 
@@ -78,13 +91,13 @@ public class NewsSourcesGridViewRecyclerAdapter extends
     public class SourcesGridViewHolder extends RecyclerView.ViewHolder{
 
         @BindView(R.id.source_image_view)
-        public NetworkImageView sourceImage;
+        ImageView sourceImage;
 
         @BindView(R.id.source_id_tv)
-        public TextView sourceIdTv;
+        TextView sourceIdTv;
 
         @BindView(R.id.source_name_tv)
-        public TextView sourceNameTv;
+        TextView sourceNameTv;
 
         public SourcesGridViewHolder(View itemView) {
             super(itemView);

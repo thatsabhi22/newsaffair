@@ -48,7 +48,7 @@ public class NewsSourceGridActivity extends BaseActivity {
         setupToolbar();
 
         pDialog = new ProgressDialog(this);
-        pDialog.setMessage("      The fresh news is cooking .....");
+        pDialog.setMessage("  The fresh news is cooking ...");
         pDialog.setCancelable(false);
 
         Commons.showpDialog(pDialog);
@@ -127,7 +127,7 @@ public class NewsSourceGridActivity extends BaseActivity {
 //################################################
 
 
-        staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, 1);
+        staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, 1);
         sourcesRecyclerView.setLayoutManager(staggeredGridLayoutManager);
     }
 
