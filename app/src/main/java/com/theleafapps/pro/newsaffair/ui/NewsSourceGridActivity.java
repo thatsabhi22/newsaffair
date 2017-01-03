@@ -38,6 +38,7 @@ public class NewsSourceGridActivity extends BaseActivity {
     NewsSourcesGridViewRecyclerAdapter sourcesGridViewRecyclerAdapter;
     private ProgressDialog pDialog;
     OkHttpClient okHttpClient;
+    Intent intent1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +112,7 @@ public class NewsSourceGridActivity extends BaseActivity {
             @Override
             public void onFailure(Call<Source> call, Throwable t) {
                 Commons.hidepDialog(pDialog);
-                Intent intent1 = new Intent(NewsSourceGridActivity.this,NoNetworkActivity.class);
+                intent1 = new Intent(NewsSourceGridActivity.this,NoNetworkActivity.class);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent1);
             }
