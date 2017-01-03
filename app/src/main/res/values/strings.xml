@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">News Affair</string>
+    <string name="app_name_version">News Affair v 1.0</string>
     <string name="apkky">c3948fe6b57d4c3098551547d7574c65</string>
     <string name="sortBy">latest</string>
     <string name="action_settings">Settings</string>
@@ -8,6 +9,102 @@
     <string name="navigation_title">News Affair</string>
     <string name="About">About Us</string>
     <string name="Credits">Credits</string>
+    <string name="credits_text">
+        \nThis app uses is powered by open-source News-API:\n\n
+         NewsAPI.org\n\n
+
+
+        \nThis app uses following open-source libraries:\n\n
+        # retrofit2 \n
+
+
+    [https://square.github.io/retrofit/]\n\n
+
+	Copyright 2013 Square, Inc.\n\n
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at\n\n
+
+   http://www.apache.org/licenses/LICENSE-2.0\n\n
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.\n\n
+
+        # okhttp3\n
+    [https://square.github.io/retrofit/]\n\n
+
+    Copyright 2016 Square, Inc.\n\n
+
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at\n\n
+
+   http://www.apache.org/licenses/LICENSE-2.0\n\n
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.\n\n
+
+        # butterknife:8.4.0\n
+
+        [http://jakewharton.github.io/butterknife/]\n\n
+
+    Copyright 2013 Jake Wharton\n\n
+
+        Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at\n\n
+
+   http://www.apache.org/licenses/LICENSE-2.0\n\n
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.\n\n
+
+        # picasso:2.4.0\n
+
+        [http://square.github.io/picasso/]\n\n
+
+        Copyright 2013 Square, Inc.\n\n
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at\n\n
+
+   http://www.apache.org/licenses/LICENSE-2.0\n\n
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.\n\n
+
+        # android-about-page\n
+  [https://github.com/medyo/android-about-page]\n\n
+
+The MIT License (MIT)\n
+Copyright (c) 2016 Mehdi Sakout\n\n
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\n
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\n
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n\n
+
+
+
+
+    </string>
+
     <!--<string name="navigation_sub_items">Sub items</string>-->
     <!--<string name="navigation_dummy_item_1">Dummy item 1</string>-->
     <!--<string name="navigation_dummy_item_2">Dummy item 2</string>-->
