@@ -10,6 +10,8 @@ public class Commons {
 
     public static final String BASE_URL = "https://newsapi.org/";
 
+    public static int SPLASH_TIME_OUT = 3000;
+
     public static void showpDialog(ProgressDialog pDialog) {
         if (!pDialog.isShowing())
             pDialog.show();
