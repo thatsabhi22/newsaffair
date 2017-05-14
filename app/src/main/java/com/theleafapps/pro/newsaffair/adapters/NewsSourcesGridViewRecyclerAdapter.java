@@ -80,7 +80,7 @@ public class NewsSourcesGridViewRecyclerAdapter extends
 
         holder.sourceIdTv.setText(String.valueOf(sourceList.get(position).getId()));
         holder.sourceNameTv.setText(String.valueOf(sourceList.get(position).getName()));
-
+        holder.sourceCaptionTv.setText(String.valueOf(sourceList.get(position).getName()));
     }
 
     @Override
@@ -98,6 +98,9 @@ public class NewsSourcesGridViewRecyclerAdapter extends
 
         @BindView(R.id.source_name_tv)
         TextView sourceNameTv;
+
+        @BindView(R.id.source_caption_tv)
+        TextView sourceCaptionTv;
 
         public SourcesGridViewHolder(View itemView) {
             super(itemView);

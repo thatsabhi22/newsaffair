@@ -22,6 +22,7 @@
             android:src="@drawable/nine"
             android:scaleType="centerCrop"
             android:padding="30dp"
+            android:visibility="gone"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
@@ -35,6 +36,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/source_caption_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/source_image_view"
+            android:layout_centerHorizontal="true"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:padding="40dp"
+            android:textColor="#5CC7B2"
+            android:text="TextView"
+            android:textSize="18sp" />
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>
