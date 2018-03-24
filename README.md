@@ -10,5 +10,9 @@ Happy News Affair !
 
 Tags: breaking news, national news, international news, local news, current news, latest news
 
-![Alt text](/Screenshots/1.png?raw=true "Optional Title")
+![Alt text](/Screenshots/1.png?raw=true)
+![Alt text](/Screenshots/2.png?raw=true)
+![Alt text](/Screenshots/3.png?raw=true)
+![Alt text](/Screenshots/4.png?raw=true)
+
 
