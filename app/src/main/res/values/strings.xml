@@ -104,6 +104,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 
     </string>
+    <string name="news_headline">news_headline</string>
 
     <!--<string name="navigation_sub_items">Sub items</string>-->
     <!--<string name="navigation_dummy_item_1">Dummy item 1</string>-->

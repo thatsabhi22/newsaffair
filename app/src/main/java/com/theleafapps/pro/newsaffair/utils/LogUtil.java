@@ -12,10 +12,15 @@ public class LogUtil {
     private static final int MAX_TAG_LENGTH = 23;
     private static final int LOG_PREFIX_LENGTH = LOG_PREFIX.length();
 
+    /**
+     * Utility class
+     */
+    private LogUtil() {
+    }
+
     public static String makeLogTag(Class clazz) {
         return makeLogTag(clazz.getSimpleName());
     }
-
 
     public static String makeLogTag(String str) {
         if (str.length() > MAX_TAG_LENGTH - LOG_PREFIX_LENGTH) {
@@ -24,7 +29,6 @@ public class LogUtil {
 
         return LOG_PREFIX + str;
     }
-
 
     public static void logD(final String tag, String message) {
         if (LOGGING_ENABLED) {
@@ -92,11 +96,5 @@ public class LogUtil {
         if (LOGGING_ENABLED) {
             Log.e(tag, message, cause);
         }
-    }
-
-    /**
-     * Utility class
-     */
-    private LogUtil() {
     }
 }

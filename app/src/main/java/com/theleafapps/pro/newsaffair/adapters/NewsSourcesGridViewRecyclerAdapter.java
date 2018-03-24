@@ -24,14 +24,14 @@ import butterknife.ButterKnife;
  * Created by aviator on 26/04/16.
  */
 public class NewsSourcesGridViewRecyclerAdapter extends
-        RecyclerView.Adapter<NewsSourcesGridViewRecyclerAdapter.SourcesGridViewHolder>{
+        RecyclerView.Adapter<NewsSourcesGridViewRecyclerAdapter.SourcesGridViewHolder> {
 
     Context mContext;
     List<Source.SourcesBean> sourceList;
 
     public NewsSourcesGridViewRecyclerAdapter(Context context, List<Source.SourcesBean> sourceList) {
-        this.sourceList        =   sourceList;
-        this.mContext          =   context;
+        this.sourceList = sourceList;
+        this.mContext = context;
     }
 
     @Override
@@ -41,15 +41,15 @@ public class NewsSourcesGridViewRecyclerAdapter extends
             @Override
             public void onClick(View v) {
 
-                TextView sourceNameTv   =   (TextView) v.findViewById(R.id.source_name_tv);
-                TextView sourceIdTv     =   (TextView) v.findViewById(R.id.source_id_tv);
+                TextView sourceNameTv = (TextView) v.findViewById(R.id.source_name_tv);
+                TextView sourceIdTv = (TextView) v.findViewById(R.id.source_id_tv);
 
 //                Toast.makeText(mContext,"Card Clicked -> Product Name : " + name.getText() + " | Product Id ->"
 //                        + productId.getText() , Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(mContext, NewsListCardsActivity.class);
-                intent.putExtra("sourceId",sourceIdTv.getText());
-                intent.putExtra("sourceName",sourceNameTv.getText());
+                intent.putExtra("sourceId", sourceIdTv.getText());
+                intent.putExtra("sourceName", sourceNameTv.getText());
                 mContext.startActivity(intent);
 
             }
@@ -88,7 +88,7 @@ public class NewsSourcesGridViewRecyclerAdapter extends
         return this.sourceList.size();
     }
 
-    public class SourcesGridViewHolder extends RecyclerView.ViewHolder{
+    public class SourcesGridViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.source_image_view)
         ImageView sourceImage;
@@ -104,7 +104,7 @@ public class NewsSourcesGridViewRecyclerAdapter extends
 
         public SourcesGridViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
 //            itemView.setOnClickListener(this);
         }
     }

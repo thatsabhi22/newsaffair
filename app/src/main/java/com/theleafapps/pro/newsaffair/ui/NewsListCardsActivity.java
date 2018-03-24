@@ -2,8 +2,8 @@ package com.theleafapps.pro.newsaffair.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -37,10 +37,10 @@ public class NewsListCardsActivity extends BaseActivity {
 
     NewsListViewRecyclerAdapter newsListViewRecyclerAdapter;
     LinearLayoutManager linearLayoutManager;
-    private ProgressDialog pDialog;
     OkHttpClient okHttpClient;
     Intent receiveI;
-    String sourceId,sourceName;
+    String sourceId, sourceName;
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,18 +50,18 @@ public class NewsListCardsActivity extends BaseActivity {
 
         setupToolbar();
 
-        receiveI    =   getIntent();
-        sourceId    =   receiveI.getStringExtra("sourceId");
-        sourceName  =   receiveI.getStringExtra("sourceName");
+        receiveI = getIntent();
+        sourceId = receiveI.getStringExtra("sourceId");
+        sourceName = receiveI.getStringExtra("sourceName");
 
-        if(!TextUtils.isEmpty(sourceName))
+        if (!TextUtils.isEmpty(sourceName))
             NewsListCardsActivity.this.setTitle("News Affair - " + sourceName);
 
-        pDialog     = new ProgressDialog(this);
+        pDialog = new ProgressDialog(this);
         pDialog.setMessage("  The fresh news is cooking ...");
         pDialog.setCancelable(false);
 
-        linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
 
         Commons.showpDialog(pDialog);
 
@@ -76,7 +76,7 @@ public class NewsListCardsActivity extends BaseActivity {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
                         Request request = chain.request().newBuilder()
-                                .addHeader("Accept","Application/JSON").build();
+                                .addHeader("Accept", "Application/JSON").build();
 //                        Response response = chain.proceed(request);
 //                        Log.w("Tangho", response.body().string());
 //                        return response;
@@ -104,9 +104,9 @@ public class NewsListCardsActivity extends BaseActivity {
 
 //############### Calling Service ################
 
-        if(!TextUtils.isEmpty(sourceId)) {
+        if (!TextUtils.isEmpty(sourceId)) {
             Call<Article> call = service.getNewsListBySourceId(sourceId,
-                                    getResources().getString(R.string.apkky));
+                    getResources().getString(R.string.apkky));
             call.enqueue(new Callback<Article>() {
                 @Override
                 public void onResponse(Call<Article> call, retrofit2.Response<Article> response) {

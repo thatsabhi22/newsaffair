@@ -25,14 +25,14 @@ import butterknife.ButterKnife;
  * Created by aviator on 26/04/16.
  */
 public class NewsListViewRecyclerAdapter extends
-        RecyclerView.Adapter<NewsListViewRecyclerAdapter.NewsListViewHolder>{
+        RecyclerView.Adapter<NewsListViewRecyclerAdapter.NewsListViewHolder> {
 
     Context mContext;
     List<Article.ArticlesBean> newsArticlesList;
 
     public NewsListViewRecyclerAdapter(Context context, List<Article.ArticlesBean> newsArticlesList) {
-        this.newsArticlesList   =   newsArticlesList;
-        this.mContext           =   context;
+        this.newsArticlesList = newsArticlesList;
+        this.mContext = context;
     }
 
     @Override
@@ -42,13 +42,13 @@ public class NewsListViewRecyclerAdapter extends
             @Override
             public void onClick(View v) {
 
-                TextView newsUrlTv      =   (TextView) v.findViewById(R.id.news_article_url);
+                TextView newsUrlTv = (TextView) v.findViewById(R.id.news_article_url);
 
 //                Toast.makeText(mContext,"Card Clicked -> Product Name : " + name.getText() + " | Product Id ->"
 //                        + productId.getText() , Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(mContext, WebActivity.class);
-                intent.putExtra("newsArticleUrl",newsUrlTv.getText());
+                intent.putExtra("newsArticleUrl", newsUrlTv.getText());
                 mContext.startActivity(intent);
 
             }
@@ -88,7 +88,7 @@ public class NewsListViewRecyclerAdapter extends
     }
 
 
-    public class NewsListViewHolder extends RecyclerView.ViewHolder{
+    public class NewsListViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.news_article_image_view)
         ImageView newsArticleImage;
@@ -101,7 +101,7 @@ public class NewsListViewRecyclerAdapter extends
 
         public NewsListViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this,itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 }

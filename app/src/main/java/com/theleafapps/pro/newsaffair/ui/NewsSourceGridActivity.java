@@ -2,8 +2,8 @@ package com.theleafapps.pro.newsaffair.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.MenuItem;
@@ -36,9 +36,9 @@ public class NewsSourceGridActivity extends BaseActivity {
 
     StaggeredGridLayoutManager staggeredGridLayoutManager;
     NewsSourcesGridViewRecyclerAdapter sourcesGridViewRecyclerAdapter;
-    private ProgressDialog pDialog;
     OkHttpClient okHttpClient;
     Intent intent1;
+    private ProgressDialog pDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,7 @@ public class NewsSourceGridActivity extends BaseActivity {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
                         Request request = chain.request().newBuilder()
-                                .addHeader("Accept","Application/JSON").build();
+                                .addHeader("Accept", "Application/JSON").build();
 //                        Response response = chain.proceed(request);
 //                        Log.w("Tangho", response.body().string());
 //                        return response;
@@ -101,7 +101,7 @@ public class NewsSourceGridActivity extends BaseActivity {
 //              Log.d("Tangho", " response"+response.body().getSources().get(0));
 
                 List<Source.SourcesBean> sourceList = response.body().getSources();
-                if(response.body().getSources().size()>0){
+                if (response.body().getSources().size() > 0) {
                     sourcesGridViewRecyclerAdapter = new NewsSourcesGridViewRecyclerAdapter(NewsSourceGridActivity.this,
                             sourceList);
                     sourcesRecyclerView.setAdapter(sourcesGridViewRecyclerAdapter);
@@ -112,7 +112,7 @@ public class NewsSourceGridActivity extends BaseActivity {
             @Override
             public void onFailure(Call<Source> call, Throwable t) {
                 Commons.hidepDialog(pDialog);
-                intent1 = new Intent(NewsSourceGridActivity.this,NoNetworkActivity.class);
+                intent1 = new Intent(NewsSourceGridActivity.this, NoNetworkActivity.class);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent1);
             }
@@ -147,7 +147,6 @@ public class NewsSourceGridActivity extends BaseActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
 
     @Override

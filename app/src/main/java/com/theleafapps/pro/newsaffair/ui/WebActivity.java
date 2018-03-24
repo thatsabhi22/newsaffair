@@ -30,26 +30,16 @@ public class WebActivity extends BaseActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        receiveI    =   getIntent();
-        articleUrl  =   receiveI.getStringExtra("newsArticleUrl");
+        receiveI = getIntent();
+        articleUrl = receiveI.getStringExtra("newsArticleUrl");
 
-        if(!TextUtils.isEmpty(articleUrl)) {
+        if (!TextUtils.isEmpty(articleUrl)) {
             news_web_view.setWebViewClient(new MyWebViewClient());
             news_web_view.getSettings().setJavaScriptEnabled(true);
             news_web_view.getSettings().setSupportZoom(true);
             news_web_view.getSettings().setBuiltInZoomControls(true);
             news_web_view.loadUrl(articleUrl);
             news_web_view.setBackgroundColor(Color.TRANSPARENT);
-        }
-    }
-
-    private class MyWebViewClient extends WebViewClient {
-
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.getSettings().setSupportZoom(true);
-            view.loadUrl(url);
-            return false;
         }
     }
 
@@ -66,5 +56,15 @@ public class WebActivity extends BaseActivity {
     @Override
     public boolean providesActivityToolbar() {
         return false;
+    }
+
+    private class MyWebViewClient extends WebViewClient {
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.getSettings().setSupportZoom(true);
+            view.loadUrl(url);
+            return false;
+        }
     }
 }

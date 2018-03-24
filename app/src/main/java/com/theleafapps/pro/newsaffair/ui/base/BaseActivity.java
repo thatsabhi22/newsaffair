@@ -21,14 +21,12 @@ import static com.theleafapps.pro.newsaffair.utils.LogUtil.makeLogTag;
  * The base class for all Activity classes.
  * This class creates and provides the navigation drawer and toolbar.
  * The navigation logic is handled in {@link BaseActivity#goToNavDrawerItem(int)}
- *
+ * <p>
  * Created by Andreas Schrade on 14.12.2015.
  */
 public abstract class BaseActivity extends AppCompatActivity {
-    private static final String TAG = makeLogTag(BaseActivity.class);
-
     protected static final int NAV_DRAWER_ITEM_INVALID = -1;
-
+    private static final String TAG = makeLogTag(BaseActivity.class);
     private DrawerLayout drawerLayout;
     private Toolbar actionBarToolbar;
 
@@ -59,6 +57,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * Updated the checked item in the navigation drawer
+     *
      * @param navigationView the navigation view
      */
     private void setSelectedItem(NavigationView navigationView) {
@@ -69,6 +68,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * Creates the item click listener.
+     *
      * @param navigationView the navigation view
      */
     private void setupDrawerSelectListener(NavigationView navigationView) {
@@ -85,10 +85,11 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * Handles the navigation item click.
+     *
      * @param itemId the clicked item
      */
     private void onNavigationItemClicked(final int itemId) {
-        if(itemId == getSelfNavDrawerItem()) {
+        if (itemId == getSelfNavDrawerItem()) {
             // Already selected
             closeDrawer();
             return;
@@ -99,6 +100,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * Handles the navigation item click and starts the corresponding activity.
+     *
      * @param item the selected navigation item
      */
     private void goToNavDrawerItem(int item) {
@@ -117,6 +119,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * Provides the action bar instance.
+     *
      * @return the action bar.
      */
     protected ActionBar getActionBarToolbar() {
@@ -139,14 +142,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void openDrawer() {
-        if(drawerLayout == null)
+        if (drawerLayout == null)
             return;
 
         drawerLayout.openDrawer(GravityCompat.START);
     }
 
     protected void closeDrawer() {
-        if(drawerLayout == null)
+        if (drawerLayout == null)
             return;
 
         drawerLayout.closeDrawer(GravityCompat.START);
