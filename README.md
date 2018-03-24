@@ -5,6 +5,8 @@ Here is the simplistic interface, yet beautiful 'News Affair' you will love it.
 
 News Affair app build on android platform using libraries like retrofit2, butterknife, picasso
 
+The App uses the Real-time Database hosted on Cloud based Mobile Backend - Dreamfactory
+
 Happy Reading !
 Happy News Affair !
 
